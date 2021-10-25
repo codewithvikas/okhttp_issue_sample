@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/issue_list_fragment">
+
+<fragment
+    android:id = "@+id/issue_list_fragment"
+    android:name="com.example.okhttpissuelistapp.ui.IssueListFragment"
+    tools:layout = "@layout/fragment_issue_list"
+    android:label="@string/okhttp_issue_list_label">
+    <action
+        android:id="@+id/action_issue_list_to_issue_detail"
+        app:destination="@id/issue_detail_fragment"/>
+</fragment>
+
+    <fragment
+        android:id="@+id/issue_detail_fragment"
+        android:name="com.example.okhttpissuelistapp.ui.IssueDetailFragment"
+        android:label="@string/isse_detail_label"
+        tools:layout="@layout/fragment_issue_detail">
+        <argument
+            android:name="git_issue"
+            app:argType="com.example.okhttpissuelistapp.domain.OkHttpIssue"/>
+    </fragment>
+</navigation>
