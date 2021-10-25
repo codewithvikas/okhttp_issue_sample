@@ -12,7 +12,7 @@ data class OkHttpIssueEntity(
     @PrimaryKey
     val id:String,
     val title:String,
-    val body:String,
+    val body:String?,
     val updatedAt:String,
     @Embedded val userDatabase:UserDatabase
     )
@@ -23,7 +23,7 @@ fun List<OkHttpIssueEntity>.asDomainModel():List<OkHttpIssue>{
     return map {
         OkHttpIssue(
             title = it.title,
-            body = it.body.take(200).plus("..."),
+            body = it.body,
             avatarUrl = it.userDatabase.avatar_url,
             updatedAt = it.updatedAt,
             userName = it.userDatabase.userName

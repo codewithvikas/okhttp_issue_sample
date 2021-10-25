@@ -6,10 +6,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class OkHttpIssue(
     val title:String,
-    val body:String,
+    val body:String?,
     val userName:String,
     val avatarUrl:String,
     val updatedAt:String):Parcelable{
-        val shortDescription:String
-        get() = body.take(200)
+        val shortDescription:String?
+        get() = body?.take(200).plus("...")
     }

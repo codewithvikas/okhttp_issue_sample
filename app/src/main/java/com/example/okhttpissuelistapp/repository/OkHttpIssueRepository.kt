@@ -7,6 +7,8 @@ import com.example.okhttpissuelistapp.database.asDomainModel
 import com.example.okhttpissuelistapp.domain.OkHttpIssue
 import com.example.okhttpissuelistapp.remote.OkHttpApi
 import com.example.okhttpissuelistapp.remote.asDatabaseModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class OkHttpIssueRepository(private val okHttpIssueDatabase: OkHttpIssueDatabase) {
 
@@ -15,9 +17,11 @@ class OkHttpIssueRepository(private val okHttpIssueDatabase: OkHttpIssueDatabase
     }
 
     suspend fun updateIssueList(){
+        withContext(Dispatchers.IO){
+            val okHttpIssueNetwork = OkHttpApi.okHttpIssueApiService.getIssueLis()
+            okHttpIssueDatabase.okHttpIssueDao.insertAll(*okHttpIssueNetwork.asDatabaseModel())
+        }
 
-        val okHttpIssueNetwork = OkHttpApi.okHttpIssueApiService.getIssueLis().await()
-        okHttpIssueDatabase.okHttpIssueDao.insertAll(*okHttpIssueNetwork.asDatabaseModel())
     }
 
 }

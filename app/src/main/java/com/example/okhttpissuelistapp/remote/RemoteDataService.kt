@@ -26,10 +26,10 @@ val retrofit = Retrofit.Builder()
 
 interface OkHttpIssueService{
     @GET("repos/square/okhttp/issues")
-     fun getIssueLis():Deferred<List<OkHttpIssueNetwork>>
+     suspend fun getIssueLis():List<OkHttpIssueNetwork>
 
     @GET("repos/square/okhttp/issues/{issueId}/comments")
-     fun getCommentList(@Path("issueId")issueId:Long):Deferred<List<Comment>>
+    suspend fun getCommentList(@Path("issueId")issueId:Long):List<Comment>
 }
 
 object OkHttpApi{

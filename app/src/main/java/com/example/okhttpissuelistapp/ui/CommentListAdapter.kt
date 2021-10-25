@@ -44,9 +44,9 @@ class CommentListAdapter:RecyclerView.Adapter<CommentListAdapter.CommentViewHold
 
         fun bind(comment:Comment){
             commentBodyTv.text = comment.body
-            commentUserNameTv.text = comment.userNetwork.userName
+            commentUserNameTv.text = comment.user.userName
             commentCreatedAtTv.text = comment.createdAt
-            val avatarUri = comment.userNetwork.avatarUrl.toUri().buildUpon().scheme("https").build()
+            val avatarUri = comment.user.avatarUrl.toUri().buildUpon().scheme("https").build()
             Glide.with(comment_avatar.context).load(avatarUri).circleCrop().into(comment_avatar)
         }
     }

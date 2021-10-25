@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 data class OkHttpIssueNetwork(
     val id:String,
     val title:String,
-    val body:String,
+    val body:String?,
     @Json(name = "user")
     val userNetwork:UserNetwork,
     @Json(name = "updated_at")val updatedAt:String)
