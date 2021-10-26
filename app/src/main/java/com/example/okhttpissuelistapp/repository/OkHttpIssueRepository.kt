@@ -18,8 +18,14 @@ class OkHttpIssueRepository(private val okHttpIssueDatabase: OkHttpIssueDatabase
 
     suspend fun updateIssueList(){
         withContext(Dispatchers.IO){
-            val okHttpIssueNetwork = OkHttpApi.okHttpIssueApiService.getIssueLis()
-            okHttpIssueDatabase.okHttpIssueDao.insertAll(*okHttpIssueNetwork.asDatabaseModel())
+            try {
+                val okHttpIssueNetwork = OkHttpApi.okHttpIssueApiService.getIssueLis()
+                okHttpIssueDatabase.okHttpIssueDao.insertAll(*okHttpIssueNetwork.asDatabaseModel())
+            }
+            catch (e:Exception){
+                e.printStackTrace()
+            }
+
         }
 
     }

@@ -24,7 +24,13 @@ class CommentListViewModel:ViewModel() {
     private fun getCommentList(issueId:Long){
 
         viewModelScope.launch {
-            _commentList.value = OkHttpApi.okHttpIssueApiService.getCommentList(issueId)
+            try {
+                _commentList.value = OkHttpApi.okHttpIssueApiService.getCommentList(issueId)
+
+            }
+            catch (e:Exception){
+                e.printStackTrace()
+            }
         }
 
     }
